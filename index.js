@@ -7,11 +7,8 @@ const app = express()
 const port = 3000
 
 // app.use(cors())
-app.use(cors({
-  origin: 'http://localhost:4200',
-  methods: 'GET,POST,PUT,DELETE',
-  allowedHeaders: 'Content-Type,Authorization'
-}));
+app.use(cors({origin: '*'}));
+
 // Body parser
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
