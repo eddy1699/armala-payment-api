@@ -5,9 +5,9 @@ const hmacSHA256 = require('crypto-js/hmac-sha256')
 const Hex = require('crypto-js/enc-hex')
 const app = express()
 const port = 3000
-
+app.options('*', cors())
 // app.use(cors())
-app.use(cors({origin: '*'}));
+
 
 // Body parser
 app.use(express.urlencoded({ extended: true }))
