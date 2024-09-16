@@ -7,7 +7,7 @@ const app = express()
 const port = 3000
 
 app.use(cors())
-
+app.options('*', cors()) 
 // Body parser
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
