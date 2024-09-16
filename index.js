@@ -6,13 +6,12 @@ const Hex = require('crypto-js/enc-hex')
 const app = express()
 const port = 3000
 
-app.use(cors())
-app.all('*', function (req, res) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
-  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-  //...
- });
+// app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:4200',
+  methods: 'GET,POST,PUT,DELETE',
+  allowedHeaders: 'Content-Type,Authorization'
+}));
 // Body parser
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
