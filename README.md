@@ -77,7 +77,7 @@ app.post('/validatePayment', (req, res) => {
 
 ```js
 await KR.onSubmit(paymentData => {
-  const response = await fetch('http://localhost:3000/validatePayment', {
+  const response = await fetch('https://armala-payment-api.netlify.app/createPayment', {
     method: "POST",
     body: JSON.stringify(paymentData)
   })
