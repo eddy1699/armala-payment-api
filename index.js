@@ -7,6 +7,9 @@ const app = express()
 const port = 3000
 app.options('*', cors())
 // app.use(cors())
+app.get('/createPayment', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+})
 
 
 // Body parser
