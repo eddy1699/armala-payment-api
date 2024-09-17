@@ -5,15 +5,20 @@ const hmacSHA256 = require('crypto-js/hmac-sha256')
 const Hex = require('crypto-js/enc-hex')
 const app = express()
 const port = 3000
-app.options('*', cors())
+const {Config, Context} =('netlify/edge-functions')
 // app.use(cors())
-app.use(cors({
-  origin: 'http://localhost:4200',
-  methods: 'GET,POST,PUT,DELETE',
-  allowedHeaders: 'Content-Type,Authorization'
-}));
 
-
+export default async (request, context) => {
+  const response = await context.next();
+  return new Response(response.body, {
+    headers: {
+      'access-control-allow-origin': '*'
+    }
+  });
+}
+export const config = {
+  path: '/*'
+};
 
 // Body parser
 app.use(express.urlencoded({ extended: true }))
