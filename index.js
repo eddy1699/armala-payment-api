@@ -5,20 +5,8 @@ const hmacSHA256 = require('crypto-js/hmac-sha256')
 const Hex = require('crypto-js/enc-hex')
 const app = express()
 const port = 3000
-const {Config, Context} =('netlify/edge-functions')
-// app.use(cors())
 
-export default async (request, context) => {
-  const response = await context.next();
-  return new Response(response.body, {
-    headers: {
-      'access-control-allow-origin': '*'
-    }
-  });
-}
-export const config = {
-  path: '/*'
-};
+app.use(cors())
 
 // Body parser
 app.use(express.urlencoded({ extended: true }))
@@ -45,7 +33,6 @@ app.post('/validatePayment', (req, res) => {
   const answer = req.body.clientAnswer
   const hash = req.body.hash
   const answerHash = Hex.stringify(
-    // hmacSHA256(JSON.stringify(answer), 'eSZJkeh5JMOTrA8K3HxNorQhVCZ6yZOhQr8SwfCMHN8wK') //
     hmacSHA256(JSON.stringify(answer), 'lVsrPlB97t5fH8YtrEjU8UhJsAkrRBQZPnatH1ezISa9n')
   )
   if (hash === answerHash) res.status(200).send('Valid payment')
